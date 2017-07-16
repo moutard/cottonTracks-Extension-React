@@ -18,5 +18,8 @@ exports.copyAssets = (type) => {
   mkdir(type);
   cp(`chrome/manifest.${env}.json`, `${type}/manifest.json`);
   cp('-R', 'chrome/assets/*', type);
+  cp('-R', 'media/', type);
+  cp('-R', '_locales/', type);
+  // Pug is a cli tools used to transform .pug file into html.
   exec(`pug -O "{ env: '${env}' }" -o ${type} chrome/views/`);
 };
